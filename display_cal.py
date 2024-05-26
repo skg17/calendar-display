@@ -12,6 +12,9 @@ def is_event_ongoing(start, end):
 
     return start.replace(tzinfo=None) <= now <= end.replace(tzinfo=None)
 
+def is_event_allday(start, end):
+    return (start.hour == 0 and start.minute == 0 and end.hour == 0 and end.minute == 0)
+
 def is_future_event(start):
     now = datetime.datetime.now()
 
@@ -20,6 +23,9 @@ def is_future_event(start):
 @app.route("/")
 def index():
     events = get_events_info()
+    all_day_events = [event for event in events if is_event_allday(event[0], event[1])]
+    events = [event for event in events if event not in all_day_events]
+
     current_event = None
     future_events = []
 
@@ -44,7 +50,8 @@ def index():
         future_end = "{0}:{1:02d}".format(future_events[0][1].hour, future_events[0][1].minute)
         upcoming_event = "({0} - {1}) {2}".format(future_start, future_end, future_name)
 
-    return render_template("template.html", 
+    return render_template("template.html",
+                           all_day_events=all_day_events,
                            current_event_name=current_name, 
                            current_event_times=current_times, 
                            upcoming_event=upcoming_event)
