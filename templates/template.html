@@ -6,7 +6,7 @@
     <title>Google Calendar Events</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -15,26 +15,42 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            background-color: #f5f5f5;
+            color: #333;
             position: relative;
         }
         .header {
             position: absolute;
             top: 20px;
             left: 20px;
-            font-size: 1.2em;
             text-align: left;
+            line-height: 1.4;
+        }
+        .header .time {
+            font-size: 2em;
+            color: #2c3e50;
+        }
+        .header .date {
+            font-size: 1.5em;
+            color: #7f8c8d;
         }
         .all-day-events {
             position: absolute;
             top: 20px;
             right: 20px;
-            font-size: 1.2em;
             text-align: right;
+        }
+        .all-day-events h2 {
+            font-size: 2em;
+            margin: 0 0 10px;
+            color: #2c3e50;
         }
         .all-day-events ul {
             list-style-type: none; /* Remove bullet points */
             padding: 0; /* Remove padding */
             margin: 0; /* Remove margin */
+            font-size: 1.5em;
+            color: #7f8c8d;
         }
         .all-day-events li {
             margin: 0; /* Remove margin */
@@ -49,30 +65,33 @@
             flex-grow: 1;
         }
         .current-event .title {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: bold;
             margin: 0.5em 0;
             max-width: 90%;
             word-wrap: break-word;
+            color: #2c3e50;
         }
         .current-event .time {
-            font-size: 1.2em;
+            font-size: 1.8em;
             margin: 0.5em 0;
+            color: #7f8c8d;
         }
         .next-event {
-            font-size: 1em;
+            font-size: 1.5em;
             text-align: center;
             margin-top: auto;
             margin-bottom: 20px;
             max-width: 90%;
             word-wrap: break-word;
+            color: #7f8c8d;
         }
     </style>
     <script>
         function updateDateTime() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            const dateString = now.toLocaleDateString();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const dateString = now.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
 
             document.getElementById('current-time').textContent = timeString;
             document.getElementById('current-date').textContent = dateString;
@@ -84,8 +103,8 @@
 </head>
 <body>
     <div class="header">
-        <div id="current-time"></div>
-        <div id="current-date"></div>
+        <div id="current-time" class="time"></div>
+        <div id="current-date" class="date"></div>
     </div>
     <div class="all-day-events">
         <ul>
