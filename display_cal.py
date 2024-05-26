@@ -30,6 +30,10 @@ def index():
         if is_future_event(start=event[0]):
             future_events.append(event)
 
-    return current_event
+    return render_template("template.html", current_name=current_event[2].title(), future_name=future_events[0][2].title(),
+                           current_start = "{0}:{1}".format(current_event[0].hour, current_event[0].minute),
+                           current_end = "{0}:{1}".format(current_event[1].hour, current_event[1].minute),
+                           future_start = "{0}:{1}".format(future_events[0][0].hour, future_events[0][0].minute),
+                           future_end = "{0}:{1}".format(future_events[0][1].hour, future_events[0][1].minute))
 
 app.run(host="0.0.0.0", port=6969)

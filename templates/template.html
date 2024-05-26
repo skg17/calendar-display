@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2em;
+            text-align: left;
+        }
+        .current-event {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .current-event .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 0.5em 0;
+            max-width: 90%;
+            word-wrap: break-word;
+        }
+        .current-event .time {
+            font-size: 1.2em;
+            margin: 0.5em 0;
+        }
+        .next-event {
+            font-size: 1em;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: 20px;
+            max-width: 90%;
+            word-wrap: break-word;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+
+            document.getElementById('current-time').textContent = timeString;
+            document.getElementById('current-date').textContent = dateString;
+        }
+
+        setInterval(updateDateTime, 1000);
+        window.onload = updateDateTime;
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div id="current-time"></div>
+        <div id="current-date"></div>
+    </div>
+    <div class="current-event">
+        <div class="title">{{ current_name }}</div>
+        <div class="time">{{ current_start }} - {{ current_end }}</div>
+    </div>
+    <div class="next-event">
+        <div>Next: ({{ future_start }} - {{ future_end }}) {{ future_name }}</div>
+    </div>
+</body>
+</html>
