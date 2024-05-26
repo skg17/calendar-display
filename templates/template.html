@@ -71,11 +71,11 @@
         <div id="current-date"></div>
     </div>
     <div class="current-event">
-        <div class="title">{{ current_name }}</div>
-        <div class="time">{{ current_start }} - {{ current_end }}</div>
+        <div class="title">{{ current_event_name }}</div>
+        <div class="time">{{ current_event_times }}</div>
     </div>
     <div class="next-event">
-        <div>Next: ({{ future_start }} - {{ future_end }}) {{ future_name }}</div>
+        <div>{{ upcoming_event }}</div>
     </div>
 </body>
 </html>
