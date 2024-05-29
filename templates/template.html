@@ -140,14 +140,15 @@
         </ul>
     </div>
     <div class="current-event">
+        {% if cam %}
+        <div class="title"> {{ current_event_name }} &#128247; </div>
+        {% else %}
         <div class="title"> {{ current_event_name }} </div>
-        {% if cam == True %}
-        <div class="title"> &#128683; </div>
         {% endif %}
         <div class="time"> {{ current_event_times }} </div>
     </div>
     <div class="next-event">
-        <div>{{ upcoming_event }}</div>
+        <div> {{ upcoming_event }} </div>
     </div>
 </body>
 </html>

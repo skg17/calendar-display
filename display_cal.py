@@ -21,7 +21,15 @@ def is_future_event(start):
     return now < start.replace(tzinfo=None)
 
 def is_cam_on(event_name):
-    return True
+    cam_on_events = ["meeting", "interview", "pmt"]
+    event_name = event_name.lower()
+    cam = False
+
+    for event in cam_on_events:
+        if event in event_name:
+            cam = True
+    
+    return cam
 
 @app.route("/")
 def index():
@@ -37,7 +45,7 @@ def index():
     for event in events:
         if is_event_ongoing(start=event[0], end=event[1]):
            current_event = event
-           cam = is_cam_on(current_event)
+           cam = is_cam_on(current_event[2])
 
         if is_future_event(start=event[0]):
             future_events.append(event)
