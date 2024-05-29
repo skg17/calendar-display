@@ -64,19 +64,30 @@
             justify-content: center;
             align-items: center;
             flex-grow: 1;
+            max-width: 80%;
         }
         .current-event .title {
             font-size: 3em;
             font-weight: bold;
             margin: 0.5em 0;
-            max-width: 90%;
-            word-wrap: break-word;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .current-event .time {
             font-size: 1.8em;
             margin: 0.5em 0;
             color: #7f8c8d;
+        }
+        .current-event .title img {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
         }
         .next-event {
             font-size: 1.5em;
@@ -86,6 +97,20 @@
             max-width: 90%;
             word-wrap: break-word;
             color: #7f8c8d;
+        }
+        .next-event .title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .next-event .title img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
         }
     </style>
     <script>
@@ -115,8 +140,11 @@
         </ul>
     </div>
     <div class="current-event">
-        <div class="title">{{ current_event_name }}</div>
-        <div class="time">{{ current_event_times }}</div>
+        <div class="title"> {{ current_event_name }} </div>
+        {% if cam == True %}
+        <div class="title"> &#128683; </div>
+        {% endif %}
+        <div class="time"> {{ current_event_times }} </div>
     </div>
     <div class="next-event">
         <div>{{ upcoming_event }}</div>

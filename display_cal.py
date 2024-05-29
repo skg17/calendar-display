@@ -20,6 +20,9 @@ def is_future_event(start):
 
     return now < start.replace(tzinfo=None)
 
+def is_cam_on(event_name):
+    return True
+
 @app.route("/")
 def index():
     events = get_events_info()
@@ -29,11 +32,12 @@ def index():
     current_event = None
     future_events = []
 
-    current_name, current_times, upcoming_event = "No events currently", "", "No upcoming events"
+    current_name, current_times, upcoming_event, cam = "No events currently", "", "No upcoming events", False
 
     for event in events:
         if is_event_ongoing(start=event[0], end=event[1]):
            current_event = event
+           cam = is_cam_on(current_event)
 
         if is_future_event(start=event[0]):
             future_events.append(event)
@@ -54,6 +58,7 @@ def index():
                            all_day_events=all_day_events,
                            current_event_name=current_name, 
                            current_event_times=current_times, 
-                           upcoming_event=upcoming_event)
+                           upcoming_event=upcoming_event,
+                           cam=cam)
     
 app.run(host="0.0.0.0", port=6969)
