@@ -29,9 +29,14 @@
         }
         .header .time {
             font-size: 2em;
+            font-weight: 800;
             color: #2c3e50;
         }
         .header .date {
+            font-size: 1.5em;
+            color: #7f8c8d;
+        }
+        .header .day {
             font-size: 1.5em;
             color: #7f8c8d;
         }
@@ -117,9 +122,11 @@
         function updateDateTime() {
             const now = new Date();
             const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const dayString = now.toLocaleDateString([], { weekday: 'long' });
             const dateString = now.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
 
             document.getElementById('current-time').textContent = timeString;
+            document.getElementById('current-day').textContent = dayString;
             document.getElementById('current-date').textContent = dateString;
         }
 
@@ -130,12 +137,14 @@
 <body>
     <div class="header">
         <div id="current-time" class="time"></div>
+        <div id="current-day" class="day"></div>
         <div id="current-date" class="date"></div>
     </div>
     <div class="all-day-events">
+        <h2>All-Day Events</h2>
         <ul>
             {% for event in all_day_events %}
-            <div>{{ event[2] }}</div>
+            <li>{{ event[2] }}</li>
             {% endfor %}
         </ul>
     </div>
