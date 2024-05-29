@@ -8,9 +8,9 @@ month = datetime.datetime.now().month
 year = datetime.datetime.now().year
 
 def is_event_ongoing(start, end):
-    now = datetime.datetime.now()
+    now = datetime.datetime.now().replace(tzinfo="UTC+01:00")
 
-    return start.replace(tzinfo=None) <= now <= end.replace(tzinfo=None)
+    return start <= now <= end
 
 def is_event_allday(start, end):
     return (start.hour == 0 and start.minute == 0 and end.hour == 0 and end.minute == 0)
