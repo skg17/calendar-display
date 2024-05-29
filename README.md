@@ -41,4 +41,5 @@ The repo also contains a Dockerfile, which will allow for containerization. In m
     python calendar-display.py
     ```
     Upon first running the program, you may be asked to sign into Google Calendar to generate a token. After doing so once the prompt should not appear again.
+    
     By default the script will create the webpage and display it on port 6969 of the local host, so the page can be found by navigating to `http://localhost:6969` on your browser of choice.
