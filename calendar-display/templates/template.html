@@ -29,7 +29,9 @@
         <div id="current-date" class="date"></div>
     </div>
     <div class="all-day-events">
+        {% if all_day_events %}
         <h2>All-Day Events</h2>
+        {% endif %}
         <ul>
             {% for event in all_day_events %}
             <li>{{ event[2] }}</li>
