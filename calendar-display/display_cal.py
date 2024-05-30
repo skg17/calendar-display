@@ -8,19 +8,65 @@ month = datetime.datetime.now().month
 year = datetime.datetime.now().year
 
 def is_event_ongoing(start, end):
+    """
+    Checks if an event is ongoing by comparing the current time to the event start and end times.
+
+    Parameters:
+    -----------
+        start (datetime) : the start time of the specified event.
+        end (datetime) : the end time of the specified event.
+
+    Returns:
+    --------
+        (bool) : whether the given event is ongoing or not.
+    """
     now = datetime.datetime.now().replace(tzinfo="UTC+01:00")
 
     return start <= now <= end
 
 def is_event_allday(start, end):
+    """
+    Checks if an event lasts all day by checking if both the start and end times are midnight.
+
+    Parameters:
+    -----------
+        start (datetime) : the start time of the specified event.
+        end (datetime) : the end time of the specified event.
+
+    Returns:
+    --------
+        (bool) : whether the given event lasts all day or not.
+    """
     return (start.hour == 0 and start.minute == 0 and end.hour == 0 and end.minute == 0)
 
 def is_future_event(start):
+    """
+    Checks if an event is upcoming by comparing the start time against current time.
+
+    Parameters:
+    -----------
+        start (datetime) : the start time of the specified event.
+
+    Returns:
+    --------
+        (bool) : whether the given event is upcoming or not.
+    """
     now = datetime.datetime.now()
 
     return now < start.replace(tzinfo=None)
 
 def is_cam_on(event_name):
+    """
+    Checks if an event requires a webcam by looking for specific words in the event name.
+
+    Parameters:
+    -----------
+        event_name (str) : the name of the specified event.
+
+    Returns:
+    --------
+        (bool) : whether the given event is requires a webcam or not.
+    """
     cam_on_events = ["meeting", "interview", "pmt"]
     event_name = event_name.lower()
     cam = False
