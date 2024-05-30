@@ -1,5 +1,6 @@
 # Calendar Display
 ***Create a Web Interface to Display Google Calendar Events***
+![main](https://github.com/skg17/calendar-display/assets/32193465/5bf59e57-1945-4129-8419-65d056e8d297)
 
 This project displays your Google Calendar events on a locally hosted webpage. It fetches the ongoing event, the next upcoming event, and all-day events, presenting them in a clean, minimalist interface. The time and date are dynamically updated.
 
