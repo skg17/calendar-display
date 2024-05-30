@@ -66,14 +66,20 @@ def get_events_info():
 
     # Gather data for list
     for event in events:
-      event_name = event["summary"]
-      # Get event date, time and duration
+      # Stores event name
+      try:
+        event_name = event["summary"]
+      # Unless event is untitled, in which case name is stored as 'Untitled Event'
+      except:
+        event_name = "Untitled Event"
+
+      # Get event start and end times
       start = event["start"].get("dateTime", event["start"].get("date"))
       start = datetime.datetime.fromisoformat(start)
       end = event["end"].get("dateTime", event["end"].get("date"))
       end = datetime.datetime.fromisoformat(end)
 
-      # Adds info to list 
+      # Adds info to sub-list which is appended to events_info list
       events_info.append([start, end, event_name])
 
     return events_info
