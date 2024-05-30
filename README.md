@@ -61,3 +61,9 @@ As of yet, I haven't been able to get the installation working using CasaOS's bu
     Simply drag and drop the repo folder, including `credentials.json` and `token.json`, into the AppData directory of your server.
 2. **Create and run the Docker container:**
     From the CasaOS terminal, follow Steps 1-2 of the Docker Setup section.
+
+## Contributing
+Contributions are welcome! Please submit a pull request or open an issue to discuss any changes.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
