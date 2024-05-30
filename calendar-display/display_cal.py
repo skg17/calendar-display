@@ -20,9 +20,7 @@ def is_event_ongoing(start, end):
     --------
         (bool) : whether the given event is ongoing or not.
     """
-    now = datetime.datetime.now().replace(tzinfo="UTC+01:00")
-
-    return start <= now <= end
+    return start.replace(tzinfo=None) <= datetime.datetime.now() <= end.replace(tzinfo=None)
 
 def is_event_allday(start, end):
     """
@@ -37,7 +35,7 @@ def is_event_allday(start, end):
     --------
         (bool) : whether the given event lasts all day or not.
     """
-    return (start.hour == 0 and start.minute == 0 and end.hour == 0 and end.minute == 0)
+    return start.hour == 0 and start.minute == 0 and end.hour == 0 and end.minute == 0
 
 def is_future_event(start):
     """
@@ -51,9 +49,7 @@ def is_future_event(start):
     --------
         (bool) : whether the given event is upcoming or not.
     """
-    now = datetime.datetime.now()
-
-    return now < start.replace(tzinfo=None)
+    return datetime.datetime.now() < start.replace(tzinfo=None)
 
 def is_cam_on(event_name):
     """
@@ -67,15 +63,11 @@ def is_cam_on(event_name):
     --------
         (bool) : whether the given event is requires a webcam or not.
     """
-    cam_on_events = ["meeting", "interview", "pmt"]
-    event_name = event_name.lower()
-    cam = False
+    # cam_on_events is a list of strings that when found in the event name indicate the need for a cam
+    cam_on_events = ["meeting", "interview", "pmt", "webcam", "camera"]
 
-    for event in cam_on_events:
-        if event in event_name:
-            cam = True
-    
-    return cam
+    # returns whether any keyword was found in the event name
+    return any([keyword in event_name.lower() for keyword in cam_on_events])
 
 @app.route("/")
 def index():
