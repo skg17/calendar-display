@@ -56,7 +56,7 @@ def get_events_info():
 
     # Call the Calendar API
     start = datetime.datetime(year, month, day).isoformat() + "Z"
-    end = datetime.datetime(year, month, day, hour=23, minute=59).isoformat() + "Z"
+    end = datetime.datetime(year, month, day+1).isoformat() + "Z"
 
     events_info = []
 

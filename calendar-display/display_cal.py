@@ -66,7 +66,7 @@ def is_cam_on(event_name):
     # cam_on_events is a list of strings that when found in the event name indicate the need for a cam
     cam_on_events = ["meeting", "interview", "pmt", "webcam", "camera"]
 
-    # returns whether any keyword was found in the event name
+    # Returns whether any keyword was found in the event name
     return any([keyword in event_name.lower() for keyword in cam_on_events])
 
 @app.route("/")
@@ -85,7 +85,7 @@ def index():
            current_event = event
            cam = is_cam_on(current_event[2])
 
-        if is_future_event(start=event[0]):
+        elif is_future_event(start=event[0]):
             future_events.append(event)
 
     if current_event:
