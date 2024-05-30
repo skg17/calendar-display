@@ -1,5 +1,6 @@
 # Calendar Display
 ***Create a Web Interface to Display Google Calendar Events***
+
 ![main](https://github.com/skg17/calendar-display/assets/32193465/5bf59e57-1945-4129-8419-65d056e8d297)
 
 This project displays your Google Calendar events on a locally hosted webpage. It fetches the ongoing event, the next upcoming event, and all-day events, presenting them in a clean, minimalist interface. The time and date are dynamically updated.
@@ -62,6 +63,15 @@ As of yet, I haven't been able to get the installation working using CasaOS's bu
     Simply drag and drop the repo folder, including `credentials.json` and `token.json`, into the AppData directory of your server.
 2. **Create and run the Docker container:**
     From the CasaOS terminal, follow Steps 1-2 of the Docker Setup section.
+3. **Install the container on CasaOS:**
+    - On the CasaOS dashboard, under the "Legacy App (To be rebuilt)" section, a new container with a random two-word name will appear.
+    This is the Docker container and needs to be rebuilt to work directly from the dashboard. Click on the icon, and press the Rebuild button.
+    - Choose an app name which will appear on the dashboard, and set the port to `6969` again before clicking the Save button.
+    - Open the container settings and change/set the following:
+        - Set Tag to `latest`.
+        - Add an Environment Variable with Key `TZ` and Value corresponding to your TZ time zone (e.g. `Europe/London`, a full list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)).
+        - Change the Memory Limit to `256` and the CPU Shares to `Low` (optional, to limit resource usage).
+        - Change Restart Policy to `always` (optional, starts container automatically every time the server is turned on).
 
 ## Contributing
 Contributions are welcome! Please submit a pull request or open an issue to discuss any changes.
